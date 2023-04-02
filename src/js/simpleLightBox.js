@@ -1,10 +1,17 @@
-import SimpleLightbox from 'simplelightbox';
+// import SimpleLightbox from 'simplelightbox';
+import SimpleLightbox from 'simple-lightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-export new SimpleLightbox('.gallery a', {
+import { getRefs } from './js/refs';
+const refs = getRefs();
+
+new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
+
+// // Listen to clicks on image previews
+refs.gallery.addEventListener('click', onImgPreviewClick);
 
 function onImgPreviewClick(event) {
   event.preventDefault();
