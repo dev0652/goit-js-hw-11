@@ -1,7 +1,9 @@
 // Imports
-import { getRefs } from './js/refs';
-import { PixabayApi } from './js/api';
-import { makeGalleryMarkup } from './js/markup';
+import getRefs from './js/refs';
+import PixabayApi from './js/api';
+import makeGalleryMarkup from './js/markup';
+import searchParameters from './js/parameters.js';
+
 import {
   handleErrors,
   onEmptyResult,
@@ -9,10 +11,11 @@ import {
   onEmptySearch,
   onSearchSuccess,
 } from './js/notifications.js';
-import { searchParameters, AUTH_TOKEN } from './js/parameters.js';
 
 import axios from 'axios';
-axios.defaults.baseURL = 'https://pixabay.com/api/';
+
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 // ###########################################################################
 
@@ -24,6 +27,7 @@ const refs = getRefs();
 // Create a new PixabayApi instance
 const pixabay = new PixabayApi();
 pixabay.searchParameters = searchParameters;
+axios.defaults.baseURL = 'https://pixabay.com/api/';
 
 // ###########################################################################
 
@@ -32,13 +36,16 @@ refs.form.addEventListener('submit', onSubmit);
 
 // onSubmit
 function onSubmit(event) {
-  event.preventDefault(); // do not reload the page
-  refs.scrollGuard.classList.remove('shown');
+  event.preventDefault();
 
-  clearResults(); // clear gallery
+  if (refs.scrollGuard.classList.contains('shown')) {
+    refs.scrollGuard.classList.remove('shown'); // The scroll guard element is hidden to prevent unwanted triggering of intersection callback until the gallery has loaded
+    refs.gallery.innerHTML = ''; // clear previous gallery
+  }
 
-  pixabay.q = event.currentTarget.elements.searchQuery.value.trim();
-  event.currentTarget.elements.searchQuery.value = ''; // clear the search box
+  pixabay.q = event.currentTarget.elements.searchQuery.value.trim(); // store the query for infinite scroll
+
+  refs.form.reset();
 
   if (!pixabay.q) {
     return onEmptySearch(); // if search field is empty
@@ -98,7 +105,7 @@ function callback(entries) {
         pixabay.fetch().then(handleSuccess).catch(handleErrors);
 
         // Destroy and reinitialize the lightbox
-        gallery.refresh();
+        SimpleLightbox.refresh();
       }
     }
   });
@@ -106,31 +113,12 @@ function callback(entries) {
 
 // ###########################################################################
 
-// SimpleLightbox
-
-// // import { SimpleLightbox } from './js/simplelightbox';
-// import SimpleLightbox from 'simplelightbox';
-// import 'simplelightbox/dist/simple-lightbox.min.css';
-
-// new SimpleLightbox('.gallery a');
-
-// // Listen to clicks on image previews
-// refs.gallery.addEventListener('click', onImgPreviewClick);
-
-// function onImgPreviewClick(event) {
-//   event.preventDefault();
-
-//   const target = event.target;
-//   // gallery.open();
-// }
-
-// Clear gallery
-function clearResults() {
-  refs.gallery.innerHTML = '';
-}
-
 // Paint gallery
 function paintResults(markup) {
   refs.gallery.insertAdjacentHTML('beforeend', markup);
   refs.scrollGuard.classList.add('shown');
+
+  new SimpleLightbox('.gallery a', {
+    overlayOpacity: 0.8,
+  });
 }

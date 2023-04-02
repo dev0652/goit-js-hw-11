@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Create PixabayApi class
-export class PixabayApi {
+export default class PixabayApi {
   constructor() {
     this.page = 1;
     this.query = '';
