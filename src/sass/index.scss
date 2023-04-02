@@ -1,2 +1,12 @@
-@import './common';
-@import './example';
+// Defaults
+@import './base/common';
+@import './base/basic-reset';
+@import './base/defaults';
+@import './base/variables';
+
+// Components
+// @import './components/buttons';
+
+// Layout
+@import './layout/header';
+@import './layout/main';
