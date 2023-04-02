@@ -29,12 +29,7 @@
 }
 
 .photo-card {
-  // $spacing: 20px;
-  // $items-per-row: 5;
-  // flex-basis: calc((100% - $spacing * ($items-per-row - 1)) / $items-per-row);
-
-  // flex-basis: 250px;
-
+  //
   @include flex-basis-mob-tab-desk;
 
   overflow: hidden;
