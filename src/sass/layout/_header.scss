@@ -1,18 +1,94 @@
-
 .header {
-    background-color: $header;
+  background-color: $header;
+  background-color: RoyalBlue;
 
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
 
-    position: fixed;
-    top: 0;
-    left: 0;
-    
-    padding-top: 8px;
-    padding-bottom: 8px;
-    // z-index: $z-header;
+  position: fixed;
+  top: 0;
+  left: 0;
 
-    width: 100%;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  z-index: 1;
+
+  width: 100%;
+}
+
+#search-form {
+  position: relative;
+  //   overflow: hidden;
+
+  //   border: 1px solid gray;
+  //   border-radius: 5px;
+}
+
+#search-box {
+  border: 1px solid gray;
+  border-radius: 5px;
+
+  border: none;
+  padding: 7px 15px;
+  padding-right: calc(15px + 32px);
+
+  font-family: inherit;
+  font-weight: 500;
+  color: dimgray;
+
+  &::placeholder {
+    font-size: 0.8em;
+    font-weight: 600;
+    // font-family: inherit;
+    color: Silver;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px DeepSkyBlue;
+  }
+}
+
+.button {
+  position: absolute;
+  top: 1px;
+  top: 0;
+  right: 1px;
+  right: 0;
+
+  //   height: 100%;
+  font-family: inherit;
+  font-size: 0.9em;
+
+  //   border: 1px solid transparent;
+  border: none;
+  border-radius: 0 5px 5px 0;
+
+  //   padding: 5px;
+  //   height: calc(100% - 2px);
+  height: 100%;
+  width: 32px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: lightgray;
+
+  &:active {
+    background-color: Silver;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    & .button-icon {
+      fill: black;
+    }
+  }
+}
+
+.button-icon {
+  fill: gray;
 }

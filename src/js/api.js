@@ -7,6 +7,7 @@ export class PixabayApi {
     this.page = 1;
     this.query = '';
     this.searchParameters = {};
+    this.totalHits = null;
   }
 
   makeOptions() {

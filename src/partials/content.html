@@ -4,14 +4,17 @@
     <!--  -->
     <input
       id="search-box"
-      value="cat"
       type="text"
       name="searchQuery"
       autocomplete="off"
-      placeholder="Enter a keyword..."
+      placeholder="Search images..."
     />
     <!--  -->
-    <button type="submit" class="button" id="search-button">Search</button>
+    <button type="submit" class="button" id="search-button">
+      <svg class="button-icon" width="14" height="14">
+        <use href="./images/symbol-defs.svg#icon-search"></use>
+      </svg>
+    </button>
     <!--  -->
   </form>
   <!--  -->
@@ -23,5 +26,5 @@
   </div>
 
   <!-- Intersection observer target -->
-  <div class="scroll-guard"></div>
+  <div class="scroll-guard hidden"></div>
 </main>
