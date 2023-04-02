@@ -63,8 +63,6 @@ function handleSuccess(data) {
     return onEmptyResult();
   }
 
-  console.log('pixabay.page: ', pixabay.page);
-
   if (pixabay.page - 1 === 1) {
     onSearchSuccess(data.totalHits);
   }
@@ -94,31 +92,47 @@ const observer = new IntersectionObserver(callback, options);
 
 function callback(entries) {
   entries.forEach(entry => {
+    //
     if (entry.isIntersecting) {
       //
       const shownHits = pixabay.searchParameters.per_page * (pixabay.page - 1);
 
       if (shownHits > pixabay.totalHits) {
-        onOutOfResults();
-        return;
+        return onOutOfResults();
       } else {
         pixabay.fetch().then(handleSuccess).catch(handleErrors);
-
-        // Destroy and reinitialize the lightbox
-        SimpleLightbox.refresh();
+        // scrollDown();
       }
     }
   });
 }
 
 // ###########################################################################
+var gallery = new SimpleLightbox('.gallery a', {
+  overlayOpacity: 0.8,
+});
 
 // Paint gallery
 function paintResults(markup) {
   refs.gallery.insertAdjacentHTML('beforeend', markup);
   refs.scrollGuard.classList.add('shown');
 
-  new SimpleLightbox('.gallery a', {
-    overlayOpacity: 0.8,
-  });
+  if (pixabay.page - 1 > 1) {
+    // Destroy and reinitialize the lightbox
+    gallery.refresh();
+  }
 }
+
+// ###########################################################################
+
+// Smooth scroll - [при безкінечному скролі він не потрібен]
+
+// function scrollDown() {
+//   const { height: cardHeight } =
+//     refs.gallery.firstElementChild.getBoundingClientRect();
+
+//   window.scrollBy({
+//     top: cardHeight * 3,
+//     behavior: 'smooth',
+//   });
+// }

@@ -1,9 +1,14 @@
+// @use '../../node_modules/simplelightbox/src/simple-lightbox.scss' with (
+//   $sl-overlay-background: #000
+// );
+
 // Defaults
 @import './base/common';
 @import './base/basic-reset';
 @import './base/defaults';
-@import './base/variables';
 
 // Layout
 @import './layout/header';
 @import './layout/main';
+
+$sl-overlay-background: #000;

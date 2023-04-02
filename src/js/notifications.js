@@ -27,8 +27,3 @@ export function onSearchSuccess(totalHits) {
 export function handleErrors(error) {
   Notiflix.Notify.failure('Error', error.message);
 }
-
-// Testing
-export function onTriggered() {
-  Notiflix.Notify.warn('TRIGGERED');
-}
