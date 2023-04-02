@@ -34,24 +34,33 @@ axios.defaults.baseURL = 'https://pixabay.com/api/';
 refs.form.addEventListener('submit', onSubmit);
 
 // onSubmit
-function onSubmit(event) {
+async function onSubmit(event) {
   event.preventDefault();
 
-  if (refs.scrollGuard.classList.contains('shown')) {
-    refs.scrollGuard.classList.remove('shown'); // The scroll guard element is hidden to prevent unwanted triggering of intersection callback until the gallery has loaded
-    refs.gallery.innerHTML = ''; // clear previous gallery
+  const isScrollGuardShown = refs.scrollGuard.classList.contains('shown'); // The scroll guard element is hidden to prevent unwanted triggering of intersection callback until the gallery has loaded
+
+  if (isScrollGuardShown) {
+    refs.scrollGuard.classList.remove('shown');
+    refs.gallery.innerHTML = ''; // clear previous results
   }
 
   pixabay.q = event.currentTarget.elements.searchQuery.value.trim(); // store the query for infinite scroll
-
-  refs.form.reset();
 
   if (!pixabay.q) {
     return onEmptySearch(); // if search field is empty
   }
 
   pixabay.resetPage(); // reset page count
-  pixabay.fetch().then(handleSuccess).catch(handleErrors);
+  // refs.form.reset();
+
+  // pixabay.fetch().then(handleSuccess).catch(handleErrors);
+
+  try {
+    const response = await pixabay.fetch();
+    return handleSuccess(response);
+  } catch (error) {
+    handleErrors(error);
+  }
 }
 
 // ###########################################################################

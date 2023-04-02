@@ -16,14 +16,15 @@ export default class PixabayApi {
       .join('&');
   }
 
-  fetch() {
+  async fetch() {
     const params = this.makeOptions();
     const URL = `?${params}&page=${this.page}&q=${this.query}`;
 
-    return axios.get(URL).then(response => {
-      this.incrementPage();
-      return response.data;
-    });
+    const response = await axios.get(URL);
+
+    this.incrementPage();
+
+    return response.data;
   }
 
   incrementPage() {
