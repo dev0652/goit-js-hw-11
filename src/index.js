@@ -1,7 +1,4 @@
-// import { SimpleLightbox } from './js/simplelightbox';
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
-
+// Imports
 import { getRefs } from './js/refs';
 import { PixabayApi } from './js/api';
 import { makeGalleryMarkup } from './js/markup';
@@ -36,7 +33,7 @@ refs.form.addEventListener('submit', onSubmit);
 // onSubmit
 function onSubmit(event) {
   event.preventDefault(); // do not reload the page
-  // refs.scrollGuard.classList.remove('shown');
+  refs.scrollGuard.classList.remove('shown');
 
   clearResults(); // clear gallery
 
@@ -110,17 +107,22 @@ function callback(entries) {
 // ###########################################################################
 
 // SimpleLightbox
-const gallery = new SimpleLightbox('.gallery a');
 
-// Listen to clicks on image previews
-refs.gallery.addEventListener('click', onImgPreviewClick);
+// // import { SimpleLightbox } from './js/simplelightbox';
+// import SimpleLightbox from 'simplelightbox';
+// import 'simplelightbox/dist/simple-lightbox.min.css';
 
-function onImgPreviewClick(event) {
-  event.preventDefault();
+// new SimpleLightbox('.gallery a');
 
-  // const target = event.target;
-  gallery.open();
-}
+// // Listen to clicks on image previews
+// refs.gallery.addEventListener('click', onImgPreviewClick);
+
+// function onImgPreviewClick(event) {
+//   event.preventDefault();
+
+//   const target = event.target;
+//   // gallery.open();
+// }
 
 // Clear gallery
 function clearResults() {
