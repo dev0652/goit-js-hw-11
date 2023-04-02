@@ -1,14 +1,42 @@
+.container {
+  padding-left: $container-padding;
+  padding-right: $container-padding;
+  margin-left: auto;
+  margin-right: auto;
+
+  // @media screen and (min-width: $mobile) {
+  // 	width: $mobile;
+  // }
+
+  // @media screen and (min-width: $tablet) {
+  // 	width: $tablet;
+  // }
+
+  // @media screen and (min-width: $desktop) {
+  // 	width: $desktop;
+  // }
+}
+
 .gallery {
-  margin: 10px;
+  width: auto;
+
+  margin: 20px;
 
   display: flex;
-  justify-content: center;
+  // justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
 }
 
 .photo-card {
-  flex-basis: 250px;
+  // $spacing: 20px;
+  // $items-per-row: 5;
+  // flex-basis: calc((100% - $spacing * ($items-per-row - 1)) / $items-per-row);
+
+  // flex-basis: 250px;
+
+  @include flex-basis-mob-tab-desk;
+
   overflow: hidden;
 
   box-shadow: 0px 4px 4px rgba(#000000, 0.25);
@@ -44,6 +72,8 @@
   font-size: 0.7em;
 
   display: flex;
+  align-items: center;
+  justify-content: space-around;
   gap: 10px;
 }
 
