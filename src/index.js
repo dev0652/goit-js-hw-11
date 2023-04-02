@@ -3,7 +3,6 @@ import getRefs from './js/refs';
 import PixabayApi from './js/api';
 import makeGalleryMarkup from './js/markup';
 import searchParameters from './js/parameters.js';
-
 import {
   handleErrors,
   onEmptyResult,
@@ -101,14 +100,15 @@ function callback(entries) {
         return onOutOfResults();
       } else {
         pixabay.fetch().then(handleSuccess).catch(handleErrors);
-        // scrollDown();
+        // scrollDown(); // [при безкінечному скролі не потрібен]
       }
     }
   });
 }
 
 // ###########################################################################
-var gallery = new SimpleLightbox('.gallery a', {
+
+const lightbox = new SimpleLightbox('.gallery a', {
   overlayOpacity: 0.8,
 });
 
@@ -117,10 +117,14 @@ function paintResults(markup) {
   refs.gallery.insertAdjacentHTML('beforeend', markup);
   refs.scrollGuard.classList.add('shown');
 
-  if (pixabay.page - 1 > 1) {
-    // Destroy and reinitialize the lightbox
-    gallery.refresh();
-  }
+  // if (pixabay.page - 1 > 1) {
+  //   // Destroy and reinitialize the lightbox
+  lightbox.refresh();
+  // }
+
+  // new SimpleLightbox('.gallery a', {
+  //   overlayOpacity: 0.8,
+  // });
 }
 
 // ###########################################################################
@@ -131,8 +135,8 @@ function paintResults(markup) {
 //   const { height: cardHeight } =
 //     refs.gallery.firstElementChild.getBoundingClientRect();
 
-//   window.scrollBy({
-//     top: cardHeight * 3,
+//   return window.scrollBy({
+//     top: cardHeight * 4,
 //     behavior: 'smooth',
 //   });
 // }
