@@ -8,7 +8,7 @@ export default class PixabayApi {
     this.query = '';
     this.searchParameters = {};
     this.totalHits = null;
-    this.cardHeight = null;
+    // this.cardHeight = null;
   }
 
   makeOptions() {

@@ -104,11 +104,10 @@ function intObserverCallback(entries) {
         try {
           handleSuccess(await pixabay.fetch());
 
-          const scrollMultiplier = Math.floor(
-            window.innerHeight / pixabay.cardHeight
-          );
+          // const scrollMultiplier =
+          //   Math.floor(window.innerHeight / pixabay.cardHeight);
 
-          scrollBy(scrollMultiplier);
+          // scrollBy(1);
         } catch (error) {
           handleErrors(error);
         }
@@ -129,19 +128,21 @@ function paintResults(markup) {
 
   lightbox.refresh(); // destroy and reinitialize the lightbox
 
-  pixabay.cardHeight = Math.floor(
-    refs.gallery.firstElementChild.getBoundingClientRect().height
-  );
+  // pixabay.cardHeight = Math.floor(
+  //   refs.gallery.firstElementChild.getBoundingClientRect().height
+  // );
 }
 
 // ###########################################################################
 
-function scrollBy(multiplier) {
-  //
-  const options = {
-    top: pixabay.cardHeight * multiplier,
-    behavior: 'smooth',
-  };
+// Я зробив промотування, але закоментував, бо мені здається, що при безкінечному скролі воно зайве.
 
-  window.scrollBy(options);
-}
+// function scrollBy(multiplier) {
+//   //
+//   const options = {
+//     top: pixabay.cardHeight * multiplier,
+//     behavior: 'smooth',
+//   };
+
+//   window.scrollBy(options);
+// }
