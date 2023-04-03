@@ -36,6 +36,8 @@ refs.form.addEventListener('submit', onSubmit);
 async function onSubmit(event) {
   event.preventDefault();
 
+  checkSearchPosition();
+
   intObserver.unobserve(refs.scrollGuard); // remove observer if present
   refs.gallery.innerHTML = ''; // clear results
 
@@ -81,6 +83,23 @@ function handleSuccess({ hits, totalHits }) {
 
 // ###########################################################################
 
+const lightbox = new SimpleLightbox('.gallery a', {
+  overlayOpacity: 0.8,
+});
+
+// Paint gallery
+function paintResults(markup) {
+  refs.gallery.insertAdjacentHTML('beforeend', markup);
+
+  lightbox.refresh(); // destroy and reinitialize the lightbox
+
+  // pixabay.cardHeight = Math.floor(
+  //   refs.gallery.firstElementChild.getBoundingClientRect().height
+  // );
+}
+
+// ###########################################################################
+
 // Intersection observer
 
 const intObserverOptions = {
@@ -119,19 +138,18 @@ function intObserverCallback(entries) {
 
 // ###########################################################################
 
-const lightbox = new SimpleLightbox('.gallery a', {
-  overlayOpacity: 0.8,
-});
+// Move search bar to the header if searching for the first time
 
-// Paint gallery
-function paintResults(markup) {
-  refs.gallery.insertAdjacentHTML('beforeend', markup);
+function checkSearchPosition() {
+  if (refs.form.classList.contains('above')) {
+    return;
+  }
 
-  lightbox.refresh(); // destroy and reinitialize the lightbox
+  refs.form.classList.add('above');
+  refs.header.classList.remove('hidden');
 
-  // pixabay.cardHeight = Math.floor(
-  //   refs.gallery.firstElementChild.getBoundingClientRect().height
-  // );
+  const { height: pageHeaderHeight } = refs.header.getBoundingClientRect();
+  document.body.style.paddingTop = `${pageHeaderHeight}px`;
 }
 
 // ###########################################################################
