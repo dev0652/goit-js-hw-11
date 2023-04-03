@@ -15,18 +15,18 @@ import axios from 'axios';
 
 import SimpleLightbox from 'simplelightbox';
 
-// ###########################################################################
+// ##################################################################
 
 const refs = getRefs();
 
-// ###########################################################################
+// ##################################################################
 
 // Create a new PixabayApi instance
 const pixabay = new PixabayApi();
 pixabay.searchParameters = searchParameters;
 axios.defaults.baseURL = 'https://pixabay.com/api/';
 
-// ###########################################################################
+// ##################################################################
 
 // Listen to form submit
 refs.form.addEventListener('submit', onSubmit);
@@ -35,7 +35,6 @@ async function onSubmit(event) {
   event.preventDefault();
 
   checkSearchPosition(); // moves searchbar to the header
-
   intObserver.unobserve(refs.scrollGuard); // remove observer if present
   refs.gallery.innerHTML = ''; // clear results
 
@@ -55,7 +54,7 @@ async function onSubmit(event) {
   }
 }
 
-// ###########################################################################
+// ##################################################################
 
 // Handle successful resolve of the fetch promise
 function handleSuccess({ data: { hits, totalHits } }) {
@@ -77,7 +76,7 @@ function handleSuccess({ data: { hits, totalHits } }) {
   intObserver.observe(refs.scrollGuard); // observe intersection with end of gallery for infinite scroll
 }
 
-// ###########################################################################
+// ##################################################################
 
 const lightbox = new SimpleLightbox('.gallery a', {
   overlayOpacity: 0.5,
@@ -94,7 +93,7 @@ function paintResults(markup) {
   // );
 }
 
-// ###########################################################################
+// ##################################################################
 
 // Intersection observer
 
@@ -132,7 +131,7 @@ function intObserverCallback(entries) {
   });
 }
 
-// ###########################################################################
+// ##################################################################
 
 // Move search bar to the header if searching for the first time
 
@@ -148,7 +147,7 @@ function checkSearchPosition() {
   document.body.style.paddingTop = `${pageHeaderHeight}px`;
 }
 
-// ###########################################################################
+// ##################################################################
 
 // function scrollBy(multiplier) {
 //   //

@@ -11,14 +11,16 @@ export default class PixabayApi {
     // this.cardHeight = null;
   }
 
-  makeOptions() {
-    return Object.entries(this.searchParameters)
-      .map(element => `${element[0]}=${element[1]}`)
-      .join('&');
+  renderSearchParams() {
+    // return Object.entries(this.searchParameters)
+    //   .map(element => `${element[0]}=${element[1]}`)
+    //   .join('&');
+    return new URLSearchParams(this.searchParameters);
+    // return instance.toString();
   }
 
   async fetch() {
-    const params = this.makeOptions();
+    const params = this.renderSearchParams(); // will be parsed automatically in the template string - https://youtu.be/B0vwmjOznEI?t=5174
     const URL = `?${params}&page=${this.page}&q=${this.query}`;
 
     return await axios.get(URL);
