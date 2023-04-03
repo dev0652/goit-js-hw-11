@@ -39,10 +39,9 @@ body {
   background-color: $bg-dark;
   color: $text-dark;
 
-  border-radius: 7px;
-  border: 2px solid burlywood;
-  border: 1px solid darkgoldenrod;
-  border: 1px solid $aaa;
+  border-radius: 5px;
+  border: 1px solid rgba(darkgoldenrod, 0.3);
+  // border: 1px solid $aaa;
 
   &:hover,
   &:focus {
