@@ -33,6 +33,7 @@
       min-width: 260px;
       padding: 7px 15px;
       font-size: unset;
+      padding-right: calc(15px + 24px);
     }
 
     & .button {
@@ -64,7 +65,7 @@
   padding: 12px 15px;
   font-size: 1.5em;
 
-  padding-right: calc(15px + 32px);
+  padding-right: calc(5px + 52px);
 
   font-family: inherit;
   font-weight: 500;
