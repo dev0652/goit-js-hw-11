@@ -51,8 +51,7 @@ async function onSubmit(event) {
     const response = await pixabay.fetch();
     return handleSuccess(response);
   } catch (error) {
-    // handleErrors(error);
-    console.log(error);
+    handleErrors(error);
   }
 }
 
