@@ -1,20 +1,21 @@
+body {
+  display: flex;
+  justify-content: center;
+
+  // for dark version:
+  height: 100vh;
+  background: rgb(43, 43, 43);
+  background: linear-gradient(
+    0deg,
+    rgba(43, 43, 43, 1) 55%,
+    rgba(88, 83, 75, 1) 100%
+  );
+  background-attachment: fixed;
+}
+
 .container {
   padding-left: $container-padding;
   padding-right: $container-padding;
-  margin-left: auto;
-  margin-right: auto;
-
-  // @media screen and (min-width: $mobile) {
-  // 	width: $mobile;
-  // }
-
-  // @media screen and (min-width: $tablet) {
-  // 	width: $tablet;
-  // }
-
-  // @media screen and (min-width: $desktop) {
-  // 	width: $desktop;
-  // }
 }
 
 .gallery {
@@ -23,7 +24,6 @@
   margin: 20px;
 
   display: flex;
-  // justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
 }
@@ -31,12 +31,17 @@
 .photo-card {
   //
   @include flex-basis-mob-tab-desk;
-
   overflow: hidden;
-
   box-shadow: 0px 4px 4px rgba(#000000, 0.25);
-
   transition: transform 300ms ease-in-out;
+
+  // background-color: whitesmoke;
+  background-color: $bg-dark;
+  color: $text-dark;
+
+  border-radius: 5px;
+  border: 2px solid burlywood;
+  border: 2px solid darkgoldenrod;
 
   &:hover,
   &:focus {
@@ -78,11 +83,3 @@
   row-gap: 5px;
   align-items: center;
 }
-
-// .scroll-guard {
-//   display: none;
-
-//   &.shown {
-//     display: block;
-//   }
-// }

@@ -1,5 +1,12 @@
 .header {
-  background-color: RoyalBlue;
+  // background-color: RoyalBlue;
+
+  background: rgb(52, 51, 51);
+  background: linear-gradient(
+    79deg,
+    rgba(52, 51, 51, 1) 0%,
+    rgba(37, 37, 37, 1) 26%
+  );
 
   display: flex;
   align-items: baseline;
@@ -21,30 +28,35 @@
 }
 
 #search-box {
-  border: 1px solid gray;
-  border-radius: 5px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  // border: none;
 
-  border: none;
   padding: 7px 15px;
   padding-right: calc(15px + 32px);
 
   font-family: inherit;
   font-weight: 500;
-  color: dimgray;
-
   text-align: center;
+
+  // color: dimgray;
+  color: black;
+  background-color: $text-dark;
 
   &::placeholder {
     font-size: 0.8em;
     font-weight: 600;
-    color: Silver;
-
     text-align: center;
+
+    // color: Silver;
+    color: dimgray;
   }
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px DeepSkyBlue;
+    // box-shadow: 0 0 0 3px DeepSkyBlue;
+    // box-shadow: 0 0 0 3px darkgoldenrod;
+    box-shadow: 0 0 0 3px $aaa;
   }
 }
 
