@@ -9,3 +9,7 @@
 @import './layout/header';
 @import './layout/main';
 @import './layout/search';
+
+// Simplelightbox
+@import './vendors/lightbox-overlay';
+@import '../../node_modules/simplelightbox/src/simple-lightbox.scss';
