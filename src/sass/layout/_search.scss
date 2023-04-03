@@ -1,0 +1,133 @@
+#search-form {
+  // position: relative;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+
+  transition: transform 100ms ease-in;
+
+  &:focus-within {
+    outline: none;
+    box-shadow: 0 0 0 3px $aaa;
+    border: none;
+    border-radius: 3px;
+
+    & .button {
+      color: black;
+
+      height: 100%;
+      top: 0;
+      right: 0;
+    }
+  }
+
+  &.above {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translate(-50%, 0);
+
+    & #search-box {
+      min-width: 260px;
+      padding: 7px 15px;
+      font-size: unset;
+    }
+
+    & .button {
+      width: 32px;
+    }
+
+    & .button-icon {
+      height: 14px;
+      width: 14px;
+    }
+  }
+}
+
+#search-box {
+  // border: 1px solid transparent;
+  border-radius: 3px;
+  border: none;
+
+  // min-width: 260px;
+  // padding: 7px 15px;
+
+  min-width: 400px;
+  padding: 12px 15px;
+  font-size: 1.5em;
+
+  padding-right: calc(15px + 32px);
+
+  font-family: inherit;
+  font-weight: 500;
+  text-align: center;
+
+  // color: dimgray;
+  color: black;
+  background-color: $text-dark;
+
+  transition: background-color 250ms ease-in-out;
+
+  &::placeholder {
+    font-size: 0.8em;
+    font-weight: 600;
+    text-align: center;
+
+    // color: Silver;
+    color: dimgray;
+    transition: color 250ms ease-in-out;
+  }
+
+  &:focus {
+    outline: none;
+    background-color: silver;
+  }
+}
+
+.button {
+  position: absolute;
+  top: 0.5px;
+  right: 0.5px;
+
+  height: calc(100% - 1px);
+  // width: 32px;
+  width: 52px;
+
+  // font-family: inherit;
+  // font-size: 0.9em;
+
+  border: none;
+  border-radius: 0 3px 3px 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: $text-dark;
+  color: dimgray;
+
+  transition: color 250ms ease-in-out, background-color 250ms ease-in-out;
+
+  &:hover,
+  &:focus,
+  &:active {
+    outline: none;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: darkgray;
+    color: black;
+  }
+
+  &:active {
+    background-color: $aaa;
+  }
+}
+
+.button-icon {
+  fill: currentColor;
+  transition: fill 500ms ease-in-out;
+}

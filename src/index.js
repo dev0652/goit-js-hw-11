@@ -84,7 +84,7 @@ function handleSuccess({ hits, totalHits }) {
 // ###########################################################################
 
 const lightbox = new SimpleLightbox('.gallery a', {
-  overlayOpacity: 0.8,
+  overlayOpacity: 0.5,
 });
 
 // Paint gallery
@@ -153,8 +153,6 @@ function checkSearchPosition() {
 }
 
 // ###########################################################################
-
-// Я зробив промотування, але закоментував, бо мені здається, що при безкінечному скролі воно зайве.
 
 // function scrollBy(multiplier) {
 //   //
