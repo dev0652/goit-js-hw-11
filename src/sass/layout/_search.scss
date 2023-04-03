@@ -56,11 +56,12 @@
   // padding: 7px 15px;
 
   @media screen and (max-width: $mobile) {
-    min-width: 200px;
-    // padding: 7px 15px;
+    width: 250px;
   }
 
-  min-width: 400px;
+  @media screen and (min-width: $mobile) {
+    min-width: 400px;
+  }
 
   padding: 12px 15px;
   font-size: 1.5em;

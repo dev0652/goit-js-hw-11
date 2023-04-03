@@ -16,21 +16,28 @@ body {
 .container {
   padding-left: $container-padding;
   padding-right: $container-padding;
+
+  @media screen and (min-width: $desktop-medium) {
+    margin-left: $desktop-margin;
+    margin-right: $desktop-margin;
+  }
 }
 
 .gallery {
   width: auto;
 
-  margin: 20px;
+  margin-top: $regular-gap;
+  margin-bottom: $regular-gap;
 
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: $regular-gap;
 }
 
 .photo-card {
   //
   @include flex-basis-mob-tab-desk;
+
   overflow: hidden;
   box-shadow: 0px 4px 4px rgba(#000000, 0.25);
   transition: transform 300ms ease-in-out;
