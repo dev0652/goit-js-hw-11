@@ -24,8 +24,8 @@ body {
 }
 
 .gallery {
-  margin-top: $regular-gap;
-  margin-bottom: $regular-gap;
+  padding-top: $regular-gap;
+  padding-bottom: $regular-gap;
 
   display: flex;
   flex-wrap: wrap;
