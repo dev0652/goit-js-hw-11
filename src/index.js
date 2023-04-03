@@ -95,7 +95,6 @@ function intObserverCallback(entries) {
   entries.forEach(async entry => {
     //
     if (entry.isIntersecting) {
-      //
       const shownHits = pixabay.searchParameters.per_page * (pixabay.page - 1);
 
       if (shownHits >= pixabay.totalHits) {
