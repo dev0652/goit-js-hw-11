@@ -34,7 +34,7 @@ refs.form.addEventListener('submit', onSubmit);
 async function onSubmit(event) {
   event.preventDefault();
 
-  checkSearchPosition();
+  checkSearchPosition(); // moves searchbar to the header
 
   intObserver.unobserve(refs.scrollGuard); // remove observer if present
   refs.gallery.innerHTML = ''; // clear results
@@ -47,30 +47,29 @@ async function onSubmit(event) {
 
   pixabay.resetPage(); // reset page count
 
-  // refs.form.reset(); // clear form
-
-  // pixabay.fetch().then(handleSuccess).catch(handleErrors);
-
   try {
     const response = await pixabay.fetch();
     return handleSuccess(response);
   } catch (error) {
-    handleErrors(error);
+    // handleErrors(error);
+    console.log(error);
   }
 }
 
 // ###########################################################################
 
 // Handle successful resolve of the fetch promise
-function handleSuccess({ hits, totalHits }) {
+function handleSuccess({ data: { hits, totalHits } }) {
   if (totalHits === 0) {
     return onEmptyResult();
   }
 
-  if (pixabay.page - 1 === 1) {
+  if (pixabay.page === 1) {
     onSearchSuccess(totalHits);
     pixabay.totalHits = totalHits; // store totalHits value for calculations
   }
+
+  pixabay.incrementPage(); // page count +1
 
   const markup = makeGalleryMarkup(hits);
 

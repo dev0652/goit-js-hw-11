@@ -21,11 +21,7 @@ export default class PixabayApi {
     const params = this.makeOptions();
     const URL = `?${params}&page=${this.page}&q=${this.query}`;
 
-    const response = await axios.get(URL);
-
-    this.incrementPage();
-
-    return response.data;
+    return await axios.get(URL);
   }
 
   incrementPage() {
