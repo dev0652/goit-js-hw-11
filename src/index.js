@@ -72,6 +72,7 @@ function handleSuccess({ hits, totalHits }) {
   }
 
   const markup = makeGalleryMarkup(hits);
+
   paintResults(markup); // render gallery markup
 
   intObserver.observe(refs.scrollGuard); // observe intersection with end of gallery for infinite scroll
@@ -82,7 +83,7 @@ function handleSuccess({ hits, totalHits }) {
 // Intersection observer
 
 const intObserverOptions = {
-  rootMargin: '0px',
+  rootMargin: '300px',
   threshold: 1.0,
 };
 
@@ -101,8 +102,7 @@ function intObserverCallback(entries) {
         return onOutOfResults();
       } else {
         try {
-          const response = await pixabay.fetch();
-          handleSuccess(response);
+          handleSuccess(await pixabay.fetch());
 
           const scrollMultiplier = Math.floor(
             window.innerHeight / pixabay.cardHeight
@@ -127,13 +127,11 @@ const lightbox = new SimpleLightbox('.gallery a', {
 function paintResults(markup) {
   refs.gallery.insertAdjacentHTML('beforeend', markup);
 
+  lightbox.refresh(); // destroy and reinitialize the lightbox
+
   pixabay.cardHeight = Math.floor(
     refs.gallery.firstElementChild.getBoundingClientRect().height
   );
-
-  console.log(window.innerHeight / pixabay.cardHeight);
-
-  lightbox.refresh(); // destroy and reinitialize the lightbox
 }
 
 // ###########################################################################
