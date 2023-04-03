@@ -18,7 +18,6 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 // ###########################################################################
 
-// Refs
 const refs = getRefs();
 
 // ###########################################################################
@@ -33,25 +32,21 @@ axios.defaults.baseURL = 'https://pixabay.com/api/';
 // Listen to form submit
 refs.form.addEventListener('submit', onSubmit);
 
-// onSubmit
 async function onSubmit(event) {
   event.preventDefault();
 
-  const isScrollGuardShown = refs.scrollGuard.classList.contains('shown'); // The scroll guard element is hidden to prevent unwanted triggering of intersection callback until the gallery has loaded
-
-  if (isScrollGuardShown) {
-    refs.scrollGuard.classList.remove('shown');
-    refs.gallery.innerHTML = ''; // clear previous results
-  }
+  intObserver.unobserve(refs.scrollGuard); // remove observer if present
+  refs.gallery.innerHTML = ''; // clear results
 
   pixabay.q = event.currentTarget.elements.searchQuery.value.trim(); // store the query for infinite scroll
 
   if (!pixabay.q) {
-    return onEmptySearch(); // if search field is empty
+    return onEmptySearch();
   }
 
   pixabay.resetPage(); // reset page count
-  // refs.form.reset();
+
+  // refs.form.reset(); // clear form
 
   // pixabay.fetch().then(handleSuccess).catch(handleErrors);
 
@@ -66,50 +61,58 @@ async function onSubmit(event) {
 // ###########################################################################
 
 // Handle successful resolve of the fetch promise
-function handleSuccess(data) {
-  if (data.totalHits === 0) {
+function handleSuccess({ hits, totalHits }) {
+  if (totalHits === 0) {
     return onEmptyResult();
   }
 
   if (pixabay.page - 1 === 1) {
-    onSearchSuccess(data.totalHits);
+    onSearchSuccess(totalHits);
+    pixabay.totalHits = totalHits; // store totalHits value for calculations
   }
 
-  // Store totalHits value for calculations
-  pixabay.totalHits = data.totalHits;
+  const markup = makeGalleryMarkup(hits);
+  paintResults(markup); // render gallery markup
 
-  // Create and render gallery markup
-  const markup = makeGalleryMarkup(data.hits);
-  paintResults(markup);
-
-  // Wait a bit for the gallery to render
-  setTimeout(() => {
-    observer.observe(document.querySelector('.scroll-guard'));
-  }, 500);
+  intObserver.observe(refs.scrollGuard); // observe intersection with end of gallery for infinite scroll
 }
 
 // ###########################################################################
 
 // Intersection observer
-const options = {
-  rootMargin: '300px',
+
+const intObserverOptions = {
+  rootMargin: '0px',
   threshold: 1.0,
 };
 
-const observer = new IntersectionObserver(callback, options);
+const intObserver = new IntersectionObserver(
+  intObserverCallback,
+  intObserverOptions
+);
 
-function callback(entries) {
-  entries.forEach(entry => {
+function intObserverCallback(entries) {
+  entries.forEach(async entry => {
     //
     if (entry.isIntersecting) {
       //
       const shownHits = pixabay.searchParameters.per_page * (pixabay.page - 1);
 
-      if (shownHits > pixabay.totalHits) {
+      if (shownHits >= pixabay.totalHits) {
         return onOutOfResults();
       } else {
-        pixabay.fetch().then(handleSuccess).catch(handleErrors);
-        // scrollDown(); // [при безкінечному скролі не потрібен]
+        try {
+          const response = await pixabay.fetch();
+          handleSuccess(response);
+
+          const scrollMultiplier = Math.floor(
+            window.innerHeight / pixabay.cardHeight
+          );
+
+          scrollBy(scrollMultiplier);
+        } catch (error) {
+          handleErrors(error);
+        }
       }
     }
   });
@@ -124,28 +127,24 @@ const lightbox = new SimpleLightbox('.gallery a', {
 // Paint gallery
 function paintResults(markup) {
   refs.gallery.insertAdjacentHTML('beforeend', markup);
-  refs.scrollGuard.classList.add('shown');
 
-  // if (pixabay.page - 1 > 1) {
-  //   // Destroy and reinitialize the lightbox
-  lightbox.refresh();
-  // }
+  pixabay.cardHeight = Math.floor(
+    refs.gallery.firstElementChild.getBoundingClientRect().height
+  );
 
-  // new SimpleLightbox('.gallery a', {
-  //   overlayOpacity: 0.8,
-  // });
+  console.log(window.innerHeight / pixabay.cardHeight);
+
+  lightbox.refresh(); // destroy and reinitialize the lightbox
 }
 
 // ###########################################################################
 
-// Smooth scroll - [при безкінечному скролі він не потрібен]
+function scrollBy(multiplier) {
+  //
+  const options = {
+    top: pixabay.cardHeight * multiplier,
+    behavior: 'smooth',
+  };
 
-// function scrollDown() {
-//   const { height: cardHeight } =
-//     refs.gallery.firstElementChild.getBoundingClientRect();
-
-//   return window.scrollBy({
-//     top: cardHeight * 4,
-//     behavior: 'smooth',
-//   });
-// }
+  window.scrollBy(options);
+}
