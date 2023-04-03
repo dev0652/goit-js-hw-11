@@ -15,6 +15,8 @@ import axios from 'axios';
 
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
+// import './sass/base/_lightbox-overlay.scss';
+import '../src/css/lightbox-overlay.css';
 
 // ###########################################################################
 
