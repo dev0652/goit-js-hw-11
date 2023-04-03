@@ -83,7 +83,7 @@ function handleSuccess({ hits, totalHits }) {
 // Intersection observer
 
 const intObserverOptions = {
-  rootMargin: '300px',
+  rootMargin: '500px',
   threshold: 1.0,
 };
 
