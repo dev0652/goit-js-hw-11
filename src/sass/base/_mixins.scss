@@ -9,31 +9,33 @@
 // Flex element's flex-basis formula for all 3 screen widths, you only need to provide the number of items per row for each
 
 @mixin flex-basis-mob-tab-desk(
-  $items-per-row-mobile: 2,
+  $items-per-row-mobile: 1,
   $items-per-row-tablet: 3,
-  $items-per-row-desktop: 4
+  $items-per-row-desktop-small: 4,
+  $items-per-row-desktop-medium: 5,
+  $items-per-row-desktop-larger: 6
 ) {
   @media screen and (max-width: ($tablet - 1px)) {
-    @include flex-basis($items-per-row-mobile);
+    @include flex-basis(2);
   }
 
   @media screen and (max-width: ($mobile)) {
-    @include flex-basis(1);
+    @include flex-basis($items-per-row-mobile);
   }
 
   @media screen and (min-width: $tablet) {
     @include flex-basis($items-per-row-tablet);
   }
 
-  @media screen and (min-width: 1000px) {
-    @include flex-basis($items-per-row-desktop);
+  @media screen and (min-width: $desktop-small) {
+    @include flex-basis($items-per-row-desktop-small);
   }
 
-  @media screen and (min-width: 1400px) {
-    @include flex-basis(5);
+  @media screen and (min-width: $desktop-medium) {
+    @include flex-basis($items-per-row-desktop-medium);
   }
 
-  @media screen and (min-width: 1600px) {
-    @include flex-basis(6);
+  @media screen and (min-width: $desktop-larger) {
+    @include flex-basis($items-per-row-desktop-larger);
   }
 }
