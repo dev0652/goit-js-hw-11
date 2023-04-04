@@ -35,6 +35,7 @@ async function onSubmit(event) {
   event.preventDefault();
 
   checkSearchPosition(); // moves searchbar to the header
+
   intObserver.unobserve(refs.scrollGuard); // remove observer if present
   refs.gallery.innerHTML = ''; // clear results
 
@@ -87,15 +88,11 @@ function paintResults(markup) {
   refs.gallery.insertAdjacentHTML('beforeend', markup);
 
   lightbox.refresh(); // destroy and reinitialize the lightbox
-
-  // pixabay.cardHeight = Math.floor(
-  //   refs.gallery.firstElementChild.getBoundingClientRect().height
-  // );
 }
 
 // ##################################################################
 
-// Intersection observer
+// Infinite scroll
 
 const intObserverOptions = {
   rootMargin: '500px',
@@ -118,11 +115,6 @@ function intObserverCallback(entries) {
       } else {
         try {
           handleSuccess(await pixabay.fetch());
-
-          // const scrollMultiplier =
-          //   Math.floor(window.innerHeight / pixabay.cardHeight);
-
-          // scrollBy(1);
         } catch (error) {
           handleErrors(error);
         }
@@ -140,21 +132,10 @@ function checkSearchPosition() {
     return;
   }
 
+  refs.logoCnt.classList.add('hidden');
   refs.form.classList.add('above');
   refs.header.classList.remove('hidden');
 
   const { height: pageHeaderHeight } = refs.header.getBoundingClientRect();
   document.body.style.paddingTop = `${pageHeaderHeight}px`;
 }
-
-// ##################################################################
-
-// function scrollBy(multiplier) {
-//   //
-//   const options = {
-//     top: pixabay.cardHeight * multiplier,
-//     behavior: 'smooth',
-//   };
-
-//   window.scrollBy(options);
-// }

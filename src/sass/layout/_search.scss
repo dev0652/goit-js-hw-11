@@ -25,9 +25,9 @@
 
   &.above {
     position: fixed;
-    top: 10px;
+    top: 26px;
     left: 50%;
-    transform: translate(-50%, 0);
+    // transform: translate(-50%, 0);
 
     & #search-box {
       min-width: 260px;
@@ -51,9 +51,6 @@
   // border: 1px solid transparent;
   border-radius: 3px;
   border: none;
-
-  // min-width: 260px;
-  // padding: 7px 15px;
 
   @media screen and (max-width: $mobile) {
     width: 250px;
