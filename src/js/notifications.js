@@ -20,7 +20,7 @@ export function onOutOfResults() {
 }
 
 export function onSearchSuccess(totalHits) {
-  Notiflix.Notify.success(`Loaded ${totalHits} images`);
+  Notiflix.Notify.success(`Success. Loaded ${totalHits} images`);
 }
 
 // Promise error handler
