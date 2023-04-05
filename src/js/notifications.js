@@ -1,10 +1,10 @@
 import Notiflix from 'notiflix';
 
 const messages = {
-  emptySearch: "Nuh-uh, it doesn't work that way. Please specify a query first",
+  emptySearch: 'Please specify a query first',
   emptyResult:
     'Sorry, there are no images matching your search query. Please try again',
-  outOfResults: "We're sorry, but you've reached the end of search results.",
+  outOfResults: "We're sorry, but you've reached the end of search results",
 };
 
 export function onEmptySearch() {
@@ -20,7 +20,7 @@ export function onOutOfResults() {
 }
 
 export function onSearchSuccess(totalHits) {
-  Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
+  Notiflix.Notify.success(`Loaded ${totalHits} images`);
 }
 
 // Promise error handler
