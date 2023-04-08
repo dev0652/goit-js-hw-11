@@ -4,6 +4,6 @@ export default {
   key: AUTH_TOKEN,
   image_type: 'photo',
   orientation: 'horizontal',
-  safesearch: true,
+  safesearch: false,
   per_page: 40,
 };
