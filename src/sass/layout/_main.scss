@@ -30,6 +30,9 @@ body {
   transform: translate(-50%, -50%);
   z-index: 2;
 
+display: flex;
+justify-content: center;
+
   &.hidden {
     display: none;
   }
