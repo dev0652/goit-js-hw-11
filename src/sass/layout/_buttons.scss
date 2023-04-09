@@ -52,13 +52,11 @@
   transition: opacity 500ms;
 
   &.hidden {
-    // display: none;
     opacity: 0;
   }
 }
 
 .button-icon {
   fill: currentColor;
-  fill: black;
   transition: fill 500ms ease-in-out;
 }

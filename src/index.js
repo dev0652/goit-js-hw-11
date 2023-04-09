@@ -10,6 +10,7 @@ import {
   onEmptySearch,
   onSearchSuccess,
 } from './js/notifications.js';
+import { onScroll, scrollToTop } from './js/scroll-to-top';
 
 import axios from 'axios';
 
@@ -136,38 +137,11 @@ function checkSearchPosition() {
   refs.form.classList.add('above');
   refs.header.classList.remove('hidden');
 
+  document.addEventListener('scroll', onScroll); // Back To Top (button + scroll)
+  refs.toTopBtn.addEventListener('click', scrollToTop);
+
   const { height: pageHeaderHeight } = refs.header.getBoundingClientRect();
   document.body.style.paddingTop = `${pageHeaderHeight}px`;
 }
 
 // ##################################################################
-
-// Back To Top (button + scroll)
-
-const showOnPx = 500;
-
-document.addEventListener('scroll', onScroll);
-
-function onScroll() {
-  if (scrollContainer().scrollTop > showOnPx) {
-    refs.toTopBtn.classList.remove('hidden');
-  } else {
-    refs.toTopBtn.classList.add('hidden');
-  }
-}
-
-const scrollContainer = () => {
-  return document.documentElement || document.body;
-};
-
-refs.toTopBtn.addEventListener('click', scrollToTop);
-
-function scrollToTop() {
-  document.body.scrollTop = 0; // For Safari
-  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-
-  // window.scroll({
-  //   top: 0,
-  //   behavior: 'smooth',
-  // });
-}
