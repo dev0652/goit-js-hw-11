@@ -4,7 +4,7 @@
   "description": "",
   "homepage": "https://dev0652.github.io/pixabay-search",
   "scripts": {
-    "start": "parcel src/*.html --open msedge",
+    "start": "parcel src/*.html",
     "build": "parcel build src/*.html --public-url /pixabay-search/"
   },
   "repository": {
