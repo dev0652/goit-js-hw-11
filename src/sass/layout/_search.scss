@@ -37,14 +37,13 @@
       // padding-right: calc(15px - 15px);
     }
 
-    & .button {
+    & .search-button {
       width: 32px;
-      // height: 32px;
-    }
 
-    & .button-icon {
-      height: 14px;
-      width: 14px;
+      & .button-icon {
+        height: 14px;
+        width: 14px;
+      }
     }
   }
 }
@@ -93,42 +92,4 @@
     outline: none;
     background-color: silver;
   }
-}
-
-.button {
-
-  width: 52px;
-
-  border: none;
-  border-radius: 0 3px 3px 0;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background-color: $text-dark;
-  color: dimgray;
-
-  transition: color 250ms ease-in-out, background-color 250ms ease-in-out;
-
-  &:hover,
-  &:focus,
-  &:active {
-    outline: none;
-  }
-
-  &:hover,
-  &:focus {
-    background-color: darkgray;
-    color: black;
-  }
-
-  &:active {
-    background-color: $aaa;
-  }
-}
-
-.button-icon {
-  fill: currentColor;
-  transition: fill 500ms ease-in-out;
 }

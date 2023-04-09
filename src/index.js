@@ -144,7 +144,7 @@ function checkSearchPosition() {
 
 // Back To Top (button + scroll)
 
-const showOnPx = 100;
+const showOnPx = 500;
 
 document.addEventListener('scroll', onScroll);
 
