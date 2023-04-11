@@ -1,5 +1,3 @@
-/* My defaults */
-
 html {
   scroll-behavior: smooth;
 }
@@ -18,7 +16,7 @@ button,
 [type='button'],
 [type='reset'],
 [type='submit'] {
-  // cursor: pointer;
+  cursor: pointer;
   font-family: inherit;
   text-align: center;
   -webkit-user-select: none;
@@ -36,4 +34,3 @@ svg {
   max-width: 100%;
   height: auto;
 }
-

@@ -1,11 +1,9 @@
 .header {
-  // background-color: RoyalBlue;
-
-  background: rgb(52, 51, 51);
+  background: var(--header-background-fallback);
   background: linear-gradient(
-    79deg,
-    rgba(52, 51, 51, 1) 0%,
-    rgba(37, 37, 37, 1) 26%
+    var(--header-gradient-angle),
+    var(--header-gradient-start-color) 0%,
+    var(--header-gradient-end-color) var(--header-gradient-end-point)
   );
 
   display: flex;

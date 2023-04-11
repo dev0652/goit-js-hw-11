@@ -1,0 +1,24 @@
+// Courtesy of Vadim Makeyev
+// https://www.youtube.com/watch?v=8LFbS78a4Rw
+
+.color-scheme-switcher {
+  color: $gray-light;
+  background: transparent;
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  border: none;
+}
+
+.color-scheme-switcher-icon {
+  fill: rgba(whitesmoke, 0.5);
+  transition: filter 100ms ease-in, fill 300ms ease-in;
+
+  &:hover {
+    fill: rgba(whitesmoke, 0.7);
+  }
+
+  &--inverted {
+    filter: invert(1);
+  }
+}

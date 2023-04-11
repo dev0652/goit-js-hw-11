@@ -1,0 +1,48 @@
+:root {
+  --gray-light: #9d9c9a;
+  --gray-med: #696969;
+  --gray-dark: #58534b;
+
+  /* Body */
+  --background-fallback: rgb(245, 245, 245);
+  --gradient-start-color: rgba(240, 248, 255, 1);
+  --gradient-end-color: rgba(245, 245, 245, 1);
+
+  /* Header */
+  --header-background-fallback: LightSteelBlue;
+  --header-gradient-start-color: rgba(70, 130, 180, 1);
+  --header-gradient-end-color: rgba(176, 196, 222, 1);
+  --header-gradient-end-point: 70%;
+  --header-gradient-angle: 14deg;
+
+  /* Search form */
+  --search-form-shadow-color-focus: var(--gray-light);
+
+  /* Search box */
+  --search-box-bg-color: WhiteSmoke;
+  --search-box-bg-color-focus: White;
+  --search-box-placeholder-color: var(--gray-light);
+  --search-box-placeholder-color-focus: silver;
+
+  /* Search button */
+  --button-bg-color: var(--search-box-bg-color);
+  --button-bg-color-focus: Gainsboro;
+  --button-bg-color-active: var(--gray-light);
+  --button-color: dimgray;
+  --button-color-focus: black;
+
+  /* Gallery */
+  /* --card-color: var(--gray-med); */
+  --card-color: DarkSlateGray;
+  --card-bg-color: GhostWhite;
+  --card-shadow-color: LightSteelBlue;
+  --card-border-color: Lavender;
+
+  /* To top button */
+  --to-top-button-shadow-color: black;
+  --to-top-button-border-color: silver;
+
+  /* Logo */
+  --logo-text: var(--gray-light);
+  --logo-text-hover: var(--gray-med);
+}

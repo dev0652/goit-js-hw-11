@@ -27,3 +27,27 @@ export function onSearchSuccess(totalHits) {
 export function handleErrors(error) {
   Notiflix.Notify.failure('Error', error.message);
 }
+
+// Options
+const options = {
+  showOnlyTheLastOne: true,
+  clickToClose: true,
+  fontFamily: 'Roboto',
+  // useIcon: false,
+  failure: {
+    background: 'IndianRed',
+  },
+};
+
+function makeDarkOptions(options) {
+  const success = { background: 'DarkSeaGreen' };
+  const failure = { background: 'IndianRed', textColor: 'lightgray' };
+  const info = { background: 'Tan', textColor: '#696969' };
+
+  return { ...options, success, failure, info };
+}
+
+const darkOptions = makeDarkOptions(options);
+
+const isDark = matchMedia('(prefers-color-scheme: dark)').matches;
+Notiflix.Notify.init(isDark ? darkOptions : options);

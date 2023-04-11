@@ -1,5 +1,4 @@
 #search-form {
-  // position: relative;
   position: absolute;
   top: 45%;
   left: 50%;
@@ -7,19 +6,20 @@
   z-index: 2;
 
   display: flex;
-  // align-items: stretch;
-  // outline: auto;
 
   transition: transform 100ms ease-in;
 
+  border: 3px solid var(--to-top-button-border-color);
+  border-radius: 5px;
+
   &:focus-within {
     outline: none;
-    box-shadow: 0 0 0 3px $aaa;
+    box-shadow: 0 0 0 3px var(--search-form-shadow-color-focus);
     border: none;
     border-radius: 3px;
 
     & .button {
-      color: black;
+      color: var(--button-color-focus);
     }
   }
 
@@ -34,7 +34,6 @@
       width: 220px;
       padding: 7px 15px;
       font-size: unset;
-      // padding-right: calc(15px - 15px);
     }
 
     & .search-button {
@@ -72,7 +71,7 @@
   text-align: center;
 
   color: black;
-  background-color: $text-dark;
+  background-color: var(--search-box-bg-color);
 
   transition: background-color 250ms ease-in-out;
 
@@ -85,17 +84,17 @@
 
     transform: translateX(10px);
 
-    color: rgba(dimgray, 0.8);
-    color: dimgray;
+    // color: rgba(dimgray, 0.8);
+    color: var(--search-box-placeholder-color);
     transition: color 250ms ease-in-out;
   }
 
   &:focus {
     outline: none;
-    background-color: silver;
+    background-color: var(--search-box-bg-color-focus);
 
     &::placeholder {
-      color: $text-dark;
+      color: var(--search-box-placeholder-color-focus);
     }
   }
 }

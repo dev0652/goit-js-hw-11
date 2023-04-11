@@ -1,0 +1,26 @@
+body {
+  font-family: 'Roboto';
+
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  background-attachment: fixed;
+
+  // dark theme:
+  background: var(--background-fallback);
+  background: linear-gradient(
+    0deg,
+    var(--gradient-start-color) 55%,
+    var(--gradient-end-color) 100%
+  );
+}
+
+.container {
+  padding-left: $container-padding;
+  padding-right: $container-padding;
+
+  @media screen and (min-width: $desktop-medium) {
+    margin-left: $desktop-margin;
+    margin-right: $desktop-margin;
+  }
+}
