@@ -137,8 +137,8 @@ function checkSearchPosition() {
   const { height: pageHeaderHeight } = refs.header.getBoundingClientRect();
   document.body.style.paddingTop = `${pageHeaderHeight}px`;
 
-  refs.target.classList.remove('hidden');
-  toTopObserver.observe(refs.target);
+  refs.toTopTarget.classList.remove('hidden');
+  toTopObserver.observe(refs.toTopTarget);
   refs.scrollToTopButton.addEventListener('click', scrollToTop);
 }
 

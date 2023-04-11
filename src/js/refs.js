@@ -9,6 +9,6 @@ export default function () {
     scrollToTopButton: document.querySelector('.back-to-top'),
     gallery: document.querySelector('.gallery'),
     scrollGuard: document.querySelector('.scroll-guard'),
-    target: document.querySelector('.intersection-target'),
+    toTopTarget: document.querySelector('.intersection-target'),
   };
 }
