@@ -12,7 +12,7 @@ import {
   onEmptySearch,
   onSearchSuccess,
 } from './js/notifications.js';
-import { scrollToTop, observer } from './js/scroll-to-top';
+import { scrollToTop, toTopObserver } from './js/scroll-to-top';
 
 import axios from 'axios';
 import SimpleLightbox from 'simplelightbox';
@@ -137,7 +137,8 @@ function checkSearchPosition() {
   const { height: pageHeaderHeight } = refs.header.getBoundingClientRect();
   document.body.style.paddingTop = `${pageHeaderHeight}px`;
 
-  observer.observe(refs.target);
+  refs.target.classList.remove('hidden');
+  toTopObserver.observe(refs.target);
   refs.scrollToTopButton.addEventListener('click', scrollToTop);
 }
 

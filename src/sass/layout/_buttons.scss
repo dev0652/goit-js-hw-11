@@ -68,8 +68,12 @@
 }
 
 .intersection-target {
+  height: 20vh;
   position: absolute;
-  top: 110vh;
-  right: 0;
-  // height: 100vh;
+  top: 0;
+  left: 0;
+
+  &.hidden {
+    display: none;
+  }
 }
