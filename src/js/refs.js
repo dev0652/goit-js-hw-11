@@ -6,8 +6,9 @@ export default function () {
     form: document.querySelector('#search-form'),
     box: document.querySelector('#search-box'),
     searchBtn: document.querySelector('#search-button'),
-    toTopBtn: document.querySelector('.back-to-top'),
+    scrollToTopButton: document.querySelector('.back-to-top'),
     gallery: document.querySelector('.gallery'),
     scrollGuard: document.querySelector('.scroll-guard'),
+    target: document.querySelector('.intersection-target'),
   };
 }

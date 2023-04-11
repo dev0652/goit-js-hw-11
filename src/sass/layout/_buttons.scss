@@ -32,6 +32,13 @@
   width: 52px;
 }
 
+.button-icon {
+  fill: currentColor;
+  transition: fill 500ms ease-in-out;
+}
+
+// Scroll back to top
+
 .back-to-top {
   position: fixed;
   bottom: 40px;
@@ -49,14 +56,20 @@
     scale: 1.03;
   }
 
-  transition: opacity 500ms;
+  opacity: 1;
+  visibility: visible;
+
+  transition: opacity 500ms ease-in, visibility 500ms ease-in;
 
   &.hidden {
     opacity: 0;
+    visibility: hidden;
   }
 }
 
-.button-icon {
-  fill: currentColor;
-  transition: fill 500ms ease-in-out;
+.intersection-target {
+  position: absolute;
+  top: 110vh;
+  right: 0;
+  // height: 100vh;
 }

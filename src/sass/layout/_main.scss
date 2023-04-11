@@ -33,6 +33,8 @@ body {
   display: flex;
   justify-content: center;
 
+  width: 55vmin;
+
   &.hidden {
     display: none;
   }

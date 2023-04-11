@@ -1,5 +1,7 @@
 // Imports
 import getRefs from './js/refs';
+const refs = getRefs();
+
 import PixabayApi from './js/api';
 import makeGalleryMarkup from './js/markup';
 import searchParameters from './js/parameters.js';
@@ -10,15 +12,10 @@ import {
   onEmptySearch,
   onSearchSuccess,
 } from './js/notifications.js';
-import { onScroll, scrollToTop } from './js/scroll-to-top';
+import { scrollToTop, observer } from './js/scroll-to-top';
 
 import axios from 'axios';
-
 import SimpleLightbox from 'simplelightbox';
-
-// ##################################################################
-
-const refs = getRefs();
 
 // ##################################################################
 
@@ -137,11 +134,11 @@ function checkSearchPosition() {
   refs.form.classList.add('above');
   refs.header.classList.remove('hidden');
 
-  document.addEventListener('scroll', onScroll); // Back To Top (button + scroll)
-  refs.toTopBtn.addEventListener('click', scrollToTop);
-
   const { height: pageHeaderHeight } = refs.header.getBoundingClientRect();
   document.body.style.paddingTop = `${pageHeaderHeight}px`;
+
+  observer.observe(refs.target);
+  refs.scrollToTopButton.addEventListener('click', scrollToTop);
 }
 
 // ##################################################################
