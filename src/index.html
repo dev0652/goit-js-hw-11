@@ -44,8 +44,16 @@
     <!-- Color schemes -->
     <meta name="color-scheme" content="light dark" />
 
-    <!-- <meta name="theme-color" media="(prefers-color-scheme: light)" content="" />
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="" /> -->
+    <script>
+      const darkSChemeMedia = matchMedia('prefers-color-scheme: dark');
+      const lightCssLink =
+        '<link rel="stylesheet" href="./css/light.css" onload="document.documentElement.style.display=\'\'" />';
+
+      if (darkSChemeMedia.media === 'not all') {
+        document.documentElement.style.display = 'none';
+        document.head.insertAdjacentHTML('beforeend', lightCssLink);
+      }
+    </script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -56,18 +64,19 @@
     />
 
     <!-- Styles -->
-    <link rel="stylesheet" href="./sass/index.scss" />
 
     <link
       rel="stylesheet"
-      href="./sass/color-scheme/light.scss"
+      href="./css/light.css"
       media="(prefers-color-scheme: light)"
     />
     <link
       rel="stylesheet"
-      href="./sass/color-scheme/dark.scss"
+      href="./css/dark.css"
       media="(prefers-color-scheme: dark)"
     />
+
+    <link rel="stylesheet" href="./sass/index.scss" />
 
     <!-- Scripts -->
     <script type="module" src="./index.js"></script>

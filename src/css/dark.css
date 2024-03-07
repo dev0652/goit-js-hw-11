@@ -1,8 +1,6 @@
-:root {
-  --gray-light: #9d9c9a;
-  --gray-med: #696969;
-  --gray-dark: #58534b;
+@import './colors.css';
 
+:root {
   /* Body */
   --background-fallback: rgb(43, 43, 43);
   --gradient-start-color: rgba(43, 43, 43, 1);
